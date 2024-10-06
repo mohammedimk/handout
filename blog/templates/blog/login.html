@@ -1,0 +1,52 @@
+{% extends 'blog/index.html' %}
+{% load static %}
+
+
+
+{% block content %}
+
+
+<h2>Join Us Today</h2>
+
+<img src="{% static 'images/login.png' %}">
+
+<div class="container">
+
+    <form action="" data-toggle="validator" method="post" id="registration">
+
+        {% csrf_token %}
+
+
+        <div class="form-group">
+            <label for="name" class="control-label">Username</label>
+            <input class="form-control" type="text" id="name" name="username" required>
+            <div class="help-block with-errors"></div>
+
+        </div>
+
+
+    <div class="form-group">
+        <label for="password" class="control-label">Password</label>
+
+        <input type="password" class="form-control" id="password" data-minlength="8"
+               name="password" placeholder="********" required>
+
+        <div class="help-block with-errors"></div>
+    </div>
+
+
+            <div class="form-group">
+                <button class="btn btn-primary" type="submit">Login</button>
+
+            </div>
+
+
+        <div class="d-flex justify-content-center links">
+            <a class="ml-2" href="#">Forgot Password</a>
+        </div>
+
+
+</form>
+</div>
+
+{% endblock %}

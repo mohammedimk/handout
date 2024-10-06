@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    {% if title %}
+    <title>past Q-{{ title }}</title>
+{% else %}
+<title>Book-Your-Past Q</title>
+    {% endif %}
+
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+              integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
+              integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+
+    <meta name="viewport" content="width:device-width, initial-scale=1.0">
+
+    {% block style %}
+    {% endblock %}
+
+
+
+
+</head>
+<body>
+
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary" style="color: white;">
+  <a class="navbar-brand" href="#">Navbar</a>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+    <ul class="navbar-nav mr-auto">
+
+
+      <li class="nav-item active">
+        <a class="nav-link" href="{% url 'home' %}"><span class="nav-item"><i class="fas fa-home"></i></span>
+Home <span class="sr-only">(current)</span></a>
+      </li>
+
+        {% if user.is_authenticated %}
+
+      <li class="nav-item">
+
+        <a class="nav-link" href="{% url 'logout' %}"><span class="nav-item"><i class="fas fa-lock"></i></span>
+          Logout <span class="sr-only">(current)</span></a>
+      </li>
+
+
+{% else %}
+
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <span class="nav-item"><i class="fas fa-save"></i></span>
+
+          Register Here
+        </a>
+
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+
+          <a class="dropdown-item" href="{% url 'register' %}">Register As a customer</a>
+          <a class="dropdown-item" href="#">Register As an agent</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="#">Register To Advertise </a>
+        </div>
+
+      </li>
+
+
+
+      <li class="nav-item">
+
+        <a class="nav-link" href="{% url 'login' %}"><span class="nav-item"><i class="fas fa-lock"></i></span>
+          Login Here<span class="sr-only">(current)</span></a>
+      </li>
+
+        {% endif %}
+
+    </ul>
+
+  </div>
+  <button class="navbar-toggler" type="button" data-toggle="collapse"
+          data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+
+  </button>
+
+    </div>
+</nav>
+
+{% if messages %}
+    {% for message in messages %}
+        <div class="alert alert-{{message.tags}}">
+            {{message}}
+        </div>
+    {% endfor %}
+
+{% endif %}
+
+    {% if form.errors %}
+
+        {% for field in form %}
+
+            {% for error in field.errors %}
+
+                <div class="alert alert-danger">
+                    <strong>{{ error }}</strong>
+                </div>
+
+            {% endfor %}
+
+        {% endfor %}
+
+        {% for error in form.non_field_errors %}
+            <div class="alert alert-danger">
+                <strong>{{ error }}</strong>
+            </div>
+        {% endfor %}
+    {% endif %}
+
+{% block content %}
+
+{% endblock %}
+
+<footer>
+    <center>
+    <div id="foot" class="container-fluid bottom" style="color:blue;">
+
+        &#169; 2024 Copy Right Reserved Boko's  Team.
+    </div>
+    </center>
+</footer>
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+
+
+
+    <script src="https://code.jquery.com/jquery-latest.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+
+    <!-- http://1000hz.github.io/bootstrap-validator/ -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/1000hz-bootstrap-validator/0.11.9/validator.min.js">
+
+    </script>
+
+
+{% block script %}
+
+{% endblock %}
+
+</body>
+</html>

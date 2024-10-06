@@ -1,0 +1,106 @@
+{% extends 'blog/index.html' %}
+{% load static %}
+
+
+
+
+    {% block style %}
+
+<style type="css">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+* {
+  box-sizing: border-box;
+}
+
+/* Add a gray background color with some padding */
+body {
+  font-family: Arial;
+  padding: 20px;
+  background: #f1f1f1;
+}
+
+/* Header/Blog Title */
+.header {
+  padding: 30px;
+  font-size: 40px;
+  text-align: center;
+  background: white;
+}
+
+/* Create two unequal columns that floats next to each other */
+/* Left column */
+.leftcolumn {
+  float: left;
+  width: 75%;
+}
+
+/* Fake image */
+.fakeimg {
+  background-color: #aaa;
+  width: 100%;
+  padding: 20px;
+}
+
+/* Responsive layout - when the screen is less than 800px wide, make the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 800px) {
+  .leftcolumn, .rightcolumn {
+    width: 100%;
+    padding: 0;
+  }
+}
+</style>
+ {% endblock %}
+
+
+
+
+{% block content %}
+
+
+<div class="header">
+  <h2>Blog Name</h2>
+</div>
+
+
+<center>
+    <marquee>
+        <h2 color="blue">Welcome {{ user.username}} To Atbu Handout and Past Questions</h2></marquee></center>
+
+
+{% if user.is_authenticated %}
+
+    {% for post in file %}
+
+  <div class="leftcolumn">
+
+    <div class="card">
+
+       <h3>Title: {{post.title}}</h3>
+
+<div class="container">
+
+    <a href="{{post.adminupload.url}}" download="{{post.adminupload.url}}">Download {{post.title}} </a>
+</div>
+
+
+    </div>
+
+
+    {% endfor %}
+{% else %}
+
+<div>
+<h6>please click here to login to see the available materials</h6>
+<a class="ml-2" href="{% url 'login' %}">Login</a>
+</div>
+<hr>
+<h6>Don't have an Account</h6>
+<a class="ml-2" href="{% url 'register' %}">Sign Up</a>
+
+
+
+{% endif %}
+
+
+{% endblock %}

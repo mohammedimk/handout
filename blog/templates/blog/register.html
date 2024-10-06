@@ -1,0 +1,64 @@
+{% extends 'blog/index.html' %}
+
+{% load static %}
+
+
+
+
+{% block content %}
+
+
+<img src="{% static 'images/join.png' %}">
+
+<div class="container">
+
+    <form action="" data-toggle="validator" method="post" id="registration">
+
+        {% csrf_token %}
+
+        <div class="form-group">
+            <label for="name" class="control-label">Username</label>
+            <input class="form-control" type="text" id="name" name="username" required>
+            <div class="help-block with-errors"></div>
+
+        </div>
+
+
+        <div class="form-group">
+            <label for="email" class="control-label">e-Mail</label>
+            <input class="form-control"  type="text" id="email" data-bv-emailaddress-message="" name="email"  required>
+            <div class="help-block with-errors"></div>
+        </div>
+
+    <div class="form-group">
+        <label for="password" class="control-label">Password</label>
+        <input type="password" class="form-control" id="password" data-minlength="8"
+               name="password" placeholder="********" required>
+        <div class="help-block with-errors"></div>
+    </div>
+
+        <div class="form-group">
+            <label for="confirmation" class="control-label">Password (again)</label>
+            <input type="password" name="confirmation" id="confirmation" data-match="#password"
+                   data-match-error="password don't match" placeholder="********"
+                   required>
+            <div class="help-block with-errors"></div>
+        </div>
+
+        <div class="form-group">
+            <div class="checkbox">
+                <label for="Agreement" class="control-label">Agree</label>
+                <input data-error="checkbox unchecked" id="agreement" required  type="checkbox">
+            <div class="help-block with-errors"></div>
+
+            </div>
+        </div>
+
+            <div class="form-group">
+                <button class="btn btn-primary" type="submit">Register</button>
+
+            </div>
+</form>
+</div>
+
+{% endblock %}
